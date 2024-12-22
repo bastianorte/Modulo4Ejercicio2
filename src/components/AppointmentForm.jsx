@@ -1,32 +1,36 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import CitaConfirmada from './CitaConfirmada';
 
-export default function AppointmentForm() {
+export default function AppointmentForm({setPacientes,doctores}) {
 
-  // Estados para almacenar los valores del formulario
-  const [nombre, setNombre] = useState('');
-  const [especialidad, setEspecialidad] = useState('');
-  const [fecha, setFecha] = useState('');
-  const [hora, setHora] = useState('');
+  const [paciente, setPaciente] = useState({nombre:"",doctor:"",experiencia:"",fecha:"",hora:""});    
+
+
+    // Referencias para manejar el enfoque
+    const nombreRef = useRef(null);
+    const fechaRef = useRef(null);
+    const horaRef = useRef(null);
+    const doctorRef = useRef(null);      
+
 
   // Función que maneja el envío del formulario
   const manejarEnvio = (e) => {
     e.preventDefault(); // Evitar recarga de la página
 
-    // Mostrar los datos ingresados en la consola o realizar una acción
-    console.log('Cita solicitada:');
-    console.log(`Nombre: ${nombre}`);
-    console.log(`Especialidad: ${especialidad}`);    
-    console.log(`Fecha: ${fecha}`);
-    console.log(`Hora: ${hora}`);
 
-    // Limpiar el formulario después de enviarlo (opcional)
-    setNombre('');
-    setEspecialidad('');
-    setFecha('');
-    setHora('');
+setPacientes(pacientes=>[...pacientes,paciente])
+
+setPaciente ({nombre:"",especialidad:"",doctor:"",fecha:"",hora:""})
+
   };
 
+  // Función para enfocar el siguiente campo
+  const enfocarCampo = (campoRef) => {
+    campoRef.current.focus();
+  };  
+
   return (
+  
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
 
       <div className="mx-auto max-w-2xl text-center">
@@ -41,26 +45,33 @@ export default function AppointmentForm() {
             <div className="mt-2.5">
               <input
                 id="nombre"
+                ref={nombreRef}
                 type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
+                value={paciente.nombre}
+                onChange={(e) => setPaciente(paciente => ({...paciente, nombre:e.target.value}))}
                 className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                required
               />
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">
-              Especialidad
+            <label>
+            Doctor:
+                <select
+                  id="doctor"
+                  ref={doctorRef}
+                  type="text"
+                  value={paciente.doctor}
+                  onChange={(e) => setPaciente(paciente => ({...paciente, doctor:e.target.value}))}
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                  required
+                >
+                  <option>Seleccione un doctor</option>
+                {doctores.map((doctor) => (                  
+                  <option key={doctor.id} value={doctor.nombre}>{doctor.nombre}</option>
+                ))}
+                  </select>
             </label>
-            <div className="mt-2.5">
-              <input
-                id="nombre"
-                type="text"
-                value={especialidad}
-                onChange={(e) => setEspecialidad(e.target.value)}
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-              />
-            </div>
           </div>          
           <div className="sm:col-span-2">
             <label htmlFor="fecha" className="block text-sm/6 font-semibold text-gray-900">
@@ -69,10 +80,12 @@ export default function AppointmentForm() {
             <div className="mt-2.5">
               <input
                 type="date"
+                ref={fechaRef}                
                 id="fecha"
-                value={fecha}
-                onChange={(e) => setFecha(e.target.value)}
+                value={paciente.fecha}
+                onChange={(e) => setPaciente(paciente => ({...paciente, fecha:e.target.value}))}
                 className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                required
               />
             </div>
           </div>
@@ -83,43 +96,16 @@ export default function AppointmentForm() {
             <div className="mt-2.5">
               <input
                 type="time"
+                ref={horaRef}                
                 id="hora"
-                value={hora}
-                onChange={(e) => setHora(e.target.value)}
+                value={paciente.hora}
+                onChange={(e) => setPaciente(paciente => ({...paciente, hora:e.target.value}))}
                 className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                required
               />
             </div>
           </div>          
-          <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">
-              Email
-            </label>
-            <div className="mt-2.5">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="phone-number" className="block text-sm/6 font-semibold text-gray-900">
-              Teléfono
-            </label>
-            <div className="mt-2.5">
-              <div className="flex rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-                <input
-                  id="phone-number"
-                  name="phone-number"
-                  type="text"
-                  placeholder="(+569) 9999 9999"
-                  className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
-                />
-              </div>
-            </div>
-          </div>
+
 
         </div>
         <div className="mt-10">
@@ -131,6 +117,9 @@ export default function AppointmentForm() {
           </button>
         </div>
       </form>
+
+
+
     </div>
   )
 }

@@ -1,4 +1,21 @@
-const ServiceList = ({servicios}) => {
+import { useEffect, useState } from "react";
+import { CiSearch } from "react-icons/ci";
+import { LuAmbulance } from "react-icons/lu";
+import { GiHealthNormal } from "react-icons/gi";
+
+const ServiceList = ({}) => {
+
+  const [servicios, setServicios] = useState([]);
+
+  useEffect(() => {
+    // Simular una API
+    setServicios([
+    { id: 1, nombre: 'Consultas', texto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus magnam soluta culpa commodi assumenda quae rem perspiciatis cum ipsam dolores, nesciunt deserunt quo. Quae rerum optio eaque distinctio voluptatum ab!", icon: <CiSearch className="h-6 w-6 text-blue-500" /> },
+    { id: 2, nombre: 'Urgencias', texto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus magnam soluta culpa commodi assumenda quae rem perspiciatis cum ipsam dolores, nesciunt deserunt quo. Quae rerum optio eaque distinctio voluptatum ab!", icon: <LuAmbulance className="h-6 w-6 text-blue-500" /> },
+    { id: 3, nombre: 'Especialidades', texto: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus magnam soluta culpa commodi assumenda quae rem perspiciatis cum ipsam dolores, nesciunt deserunt quo. Quae rerum optio eaque distinctio voluptatum ab!", icon: <GiHealthNormal className="h-6 w-6 text-blue-500" /> }
+  ]);
+}, []);
+
     return (
         <div className="bg-white py-12 sm:py-32">
         <div className="mx-auto max-w-2xl text-center pb-8">

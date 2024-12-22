@@ -1,4 +1,8 @@
+import PropTypes from 'prop-types';
+import withMoreInfo from './withMoreInfo';
+import BotonPrueba from './BotonPrueba';
 
+const DoctorCardWithInfo = withMoreInfo(BotonPrueba);
 
 const DoctorCard = ({doctores}) => {
     return (
@@ -13,11 +17,13 @@ const DoctorCard = ({doctores}) => {
         <div key={doctor.id} className="w-full max-w-sm border border-gray-200 rounded-lg shadow bg-light">
             <div className="flex flex-col items-center pb-4 pt-6">
                 <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={doctor.imagen}  alt="Bonnie image"/>
-                <h5 className="mb-1 text-xl font-medium text-primary">{doctor.nombre}</h5>
+                <h5 className="mb-1 text-xl font-medium text-primary">{doctor.genero === "m" ? 'Dr' : 'Dra'} {doctor.nombre}</h5>
                 <span className="text-sm text-primary">{doctor.especialidad}</span>
                 <span className="text-sm text-primary">{doctor.experiencia} años de experiencia</span>
                 <div className="flex mt-4 md:mt-6">
-
+                <DoctorCardWithInfo
+            doctor={doctor}
+          />
                 </div>
             </div>
         </div>
@@ -27,5 +33,16 @@ const DoctorCard = ({doctores}) => {
       </div>
     )
 }
+
+DoctorCard.propTypes = {
+  doctores: PropTypes.arrayOf(
+  PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  nombre: PropTypes.string.isRequired,
+  especialidad: PropTypes.string.isRequired,
+  experiencia: PropTypes.number.isRequired,
+  })
+  ).isRequired,
+  };
 
 export default DoctorCard
