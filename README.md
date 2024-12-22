@@ -48,7 +48,7 @@ sistema.
 └── vite.config.js
 ```
 
-### Prerrequisitos 📋
+### 📋 Prerrequisitos 
 
 - Instalación de Node.js.
 - Editor de texto (VS Code recomendado).
@@ -81,7 +81,6 @@ npm run dev
 
 Abre `http://localhost:5173` en tu navegador para visualizar la aplicación.
 
-## Características del Proyecto ⚙️
 
 ### Componentización con React
 
