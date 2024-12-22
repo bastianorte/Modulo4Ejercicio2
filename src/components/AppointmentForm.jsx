@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react'
 import CitaConfirmada from './CitaConfirmada';
 
 export default function AppointmentForm({setPacientes,doctores}) {
 
-  const [paciente, setPaciente] = useState({nombre:"",doctor:"",experiencia:"",fecha:"",hora:""});    
+  const [paciente, setPaciente] = useState({nombre:"",especialidad:"",doctor:"",experiencia:"",fecha:"",hora:""});    
 
 
     // Referencias para manejar el enfoque
@@ -20,7 +21,7 @@ export default function AppointmentForm({setPacientes,doctores}) {
 
 setPacientes(pacientes=>[...pacientes,paciente])
 
-setPaciente ({nombre:"",especialidad:"",doctor:"",fecha:"",hora:""})
+setPaciente ({nombre:"",especialidad:"",doctor:"",experiencia:"",fecha:"",hora:""})
 
   };
 
@@ -123,3 +124,12 @@ setPaciente ({nombre:"",especialidad:"",doctor:"",fecha:"",hora:""})
     </div>
   )
 }
+
+AppointmentForm.propTypes = {
+  initialValues: PropTypes.shape({
+    nombre: PropTypes.string,
+    doctor: PropTypes.string,
+    fecha: PropTypes.string,
+    hora: PropTypes.string,
+  }),
+};
