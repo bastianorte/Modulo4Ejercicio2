@@ -1,10 +1,23 @@
 import PropTypes from 'prop-types';
-import withMoreInfo from './withMoreInfo';
-import BotonPrueba from './BotonPrueba';
+import WithMoreInfo from './WithMoreInfo';
+import { useState } from 'react';
 
-const DoctorCardWithInfo = withMoreInfo(BotonPrueba);
 
 const DoctorCard = ({doctores}) => {
+ 
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  const openModal = (doctor) => {
+    setSelectedDoctor(doctor);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setSelectedDoctor(null);
+  };
+
     return (
         <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-2xl text-center pb-8">
@@ -21,14 +34,19 @@ const DoctorCard = ({doctores}) => {
                 <span className="text-sm text-primary">{doctor.especialidad}</span>
                 <span className="text-sm text-primary">{doctor.experiencia} años de experiencia</span>
                 <div className="flex mt-4 md:mt-6">
-                <DoctorCardWithInfo
-            doctor={doctor}
-          />
+                <button 
+              className="px-4 py-2 bg-primary text-white text-md rounded hover:bg-third"
+              onClick={() => openModal(doctor)}
+            >
+              Más Información
+            </button>
+
+
                 </div>
             </div>
         </div>
         ))}
-
+      <WithMoreInfo isOpen={isOpen} onClose={closeModal} doctor={selectedDoctor} />
         </div>
       </div>
     )
