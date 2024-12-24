@@ -81,22 +81,6 @@ npm run dev
 
 Abre `http://localhost:5173` en tu navegador para visualizar la aplicación.
 
-## ⚙️ Características del Proyecto 
-
-### Componentización con React
-
-- Desarrollo de componentes reutilizables para las propiedades.
-- Manejo del flujo de datos con props y estado local.
-
-### Manejo de Datos Simulados
-
-- Implementación de un archivo JSON para simular datos de propiedades.
-
-### Interactividad
-
-- Formulario dinámico para agregar propiedades con validación básica.
-- Listado de propiedades actualizado en tiempo real.
-
 
 ## 🔧 Tecnologías utilizadas
 
