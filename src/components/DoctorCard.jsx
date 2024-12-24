@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import WithMoreInfo from './WithMoreInfo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const DoctorCard = ({doctores}) => {
@@ -17,6 +17,12 @@ const DoctorCard = ({doctores}) => {
     setIsOpen(false);
     setSelectedDoctor(null);
   };
+
+  useEffect(() => {
+    if (doctores.length > 0) {
+      console.log('Datos de doctores recibidos:', doctores);
+    }
+  }, [doctores]);
 
     return (
         <div className="bg-white py-24 sm:py-32">
