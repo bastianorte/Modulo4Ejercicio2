@@ -1,6 +1,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { NavLink } from 'react-router-dom'
 import { GiHamburgerMenu, GiWhiteBook } from "react-icons/gi";
+import { useState } from 'react';
+import Modal from './Modal';
 
 const navigation = [
   { name: 'Inicio', to: '/', current: true  },
@@ -13,6 +15,12 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <Disclosure as="nav" className="bg-primary">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -46,6 +54,15 @@ export default function NavBar() {
                     {item.name}
                   </NavLink>
                 ))}
+
+<button 
+        onClick={openModal}
+        className="px-4 bg-third text-white rounded-lg hover:bg-third text-xs"
+      >
+        Horarios de Atención
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal} />          
               
               </div>
 
@@ -74,7 +91,17 @@ export default function NavBar() {
             >
               {item.name}
             </DisclosureButton>
-          ))}
+          ))}     
+
+<button 
+        onClick={openModal}
+        className="px-4 bg-third text-white rounded-lg hover:bg-third text-xs"
+      >
+        Horarios de Atención
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> 
+
         </div>
       </DisclosurePanel>
     </Disclosure>

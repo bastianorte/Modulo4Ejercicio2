@@ -5,9 +5,21 @@ import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { LuAmbulance } from "react-icons/lu";
 import { GiHealthNormal } from "react-icons/gi";
-
+import React, { Profiler } from 'react';
 
 const Inicio = () => {
+
+// profiler
+  const onRenderCallback = (
+    id, // El id del componente renderizado
+    phase, // 'mount' o 'update'
+    actualDuration, // Tiempo de renderizado real
+    baseDuration, // Tiempo estimado de renderizado
+  ) => {
+    console.log('Renderizado:', id , 'Fase:', phase, 'Duración real:', actualDuration, 'Duración base:', baseDuration);
+
+  };  
+  // profiler   
 
     const [servicios, setServicios] = useState([]);
     const [testimonios, setTestimonios] = useState([]);    
@@ -33,8 +45,12 @@ const Inicio = () => {
     return (
         <div>
             <Header title="Bienvenido a mi PuntoSalud" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet, ante id pellentesque ullamcorper, purus ex pellentesque mi, id tempor ligula arcu et nisi. Sed sit amet orci facilisis, posuere erat sed, luctus metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ut purus sit amet mi tristique facilisis. Curabitur scelerisque erat vel lorem fringilla pharetra. Donec nisl metus, semper eget pretium a, pellentesque eget eros. Sed aliquet faucibus porttitor. Maecenas tempor ligula ipsum, id tempus lorem congue a. Etiam eget fringilla magna. Vestibulum at sem nisl. Sed pellentesque non augue ut elementum. " className="header-style"/>
+            <Profiler id="servicios" onRender={onRenderCallback}>    
             <ServiceList servicios={servicios} />
+            </Profiler>      
+            <Profiler id="testimonios" onRender={onRenderCallback}>      
             <Testimonios testimonios={testimonios}  />
+            </Profiler>     
         </div>
     )
 }

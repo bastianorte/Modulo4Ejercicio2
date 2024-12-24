@@ -8,7 +8,6 @@ import Contacto from './pages/Contacto';
 import Footer from './components/Footer';
 
 export default function App() {
-
 return (
   <div>
   <NavBar />
