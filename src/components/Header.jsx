@@ -1,11 +1,10 @@
 
 
-const Header = ({ title, text, className }) => {
+const Header = ({ children }) => {
     return (
-      <header className={className}>
-        <h2>{title}</h2>
-        <p>{text}</p>
-      </header>
+<div className="header-style">
+  {children}
+</div>
     );
   };
 
