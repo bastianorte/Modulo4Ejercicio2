@@ -18,6 +18,7 @@ const DoctorCard = ({doctores}) => {
     setSelectedDoctor(null);
   };
 
+
   useEffect(() => {
     if (doctores.length > 0) {
       console.log('Datos de doctores recibidos:', doctores);

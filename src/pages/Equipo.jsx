@@ -1,10 +1,13 @@
+import ApiExample from "../components/ApiExample";
 import DoctorCard from "../components/DoctorCard"
 import Header from '../components/Header';
 import doctores from '../components/doctores.json';
 import React, { Profiler } from 'react';
 
+
 const Equipo = () => {
 
+    // profiler
     const onRenderCallback = (
         id, // El id del componente renderizado
         phase, // 'mount' o 'update'
@@ -13,6 +16,8 @@ const Equipo = () => {
       ) => {
         console.log('Renderizado:', id , 'Fase:', phase, 'Duración real:', actualDuration, 'Duración base:', baseDuration);
       };    
+// profiler
+
 
     return (
         <div>
