@@ -1,6 +1,6 @@
 
 
-import NavBar from './components/navbar';
+import NavBar from './components/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Equipo from './pages/Equipo';

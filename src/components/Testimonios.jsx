@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const Testimonios = ({data}) => {
 
     return (
-        <div className="bg-white py-12 sm:py-32">
+      <React.Fragment>
         <div className="mx-auto max-w-2xl text-center pb-8">
           <h2 className="text-balance text-2xl font-semibold tracking-tight text-primary sm:text-4xl">Testimonios</h2>
         </div>
@@ -23,7 +24,7 @@ const Testimonios = ({data}) => {
     </div>
         ))}
       </div>
-      </div>      
+      </React.Fragment>    
     );
   };
 

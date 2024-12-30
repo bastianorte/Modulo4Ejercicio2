@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import WithMoreInfo from './WithMoreInfo';
 import { useEffect, useState } from 'react';
+import WithMoreInfo from './WithMoreInfo';
 
 
 const DoctorCard = ({doctores}) => {
